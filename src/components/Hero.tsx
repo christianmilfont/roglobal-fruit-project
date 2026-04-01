@@ -47,7 +47,7 @@ const Hero = () => {
       </div>
 
       {/* Decorative blobs */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/20 animate-blob-morph blur-3xl" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/20 opacity-30 rounded-full" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-glow/10 animate-blob-morph blur-3xl" style={{ animationDelay: "-4s" }} />
 
       <div className="relative z-10 container-narrow section-padding !py-32 sm:!py-40 lg:!py-48">
