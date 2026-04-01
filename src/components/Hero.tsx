@@ -61,8 +61,8 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-primary-foreground px-5 py-2 rounded-full text-sm font-body font-medium mb-8"
-            >
+              className="inline-flex items-center gap-2 bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground px-5 py-2 rounded-full text-sm font-body font-medium mb-8"            
+              >
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               Importação & Exportação de Frutas Tropicais
             </motion.div>
