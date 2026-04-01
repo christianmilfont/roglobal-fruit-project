@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, Globe, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-fruits.jpg";
 import { useEffect, useState } from "react";
 
@@ -11,10 +12,12 @@ const stats = [
 
 const Counter = ({ target, suffix }: { target: number; suffix: string }) => {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     let start = 0;
     const duration = 2000;
     const step = Math.ceil(target / (duration / 30));
+
     const timer = setInterval(() => {
       start += step;
       if (start >= target) {
@@ -24,9 +27,16 @@ const Counter = ({ target, suffix }: { target: number; suffix: string }) => {
         setCount(start);
       }
     }, 30);
+
     return () => clearInterval(timer);
   }, [target]);
-  return <>{count}{suffix}</>;
+
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
 };
 
 const Hero = () => {
@@ -41,13 +51,22 @@ const Hero = () => {
           loading="eager"
         />
         <div className="absolute inset-0 gradient-hero-overlay" />
-        {/* Decorative grain overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
+
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
+          }}
+        />
       </div>
 
-      {/* Decorative blobs */}
+      {/* Blobs */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/20 opacity-30 rounded-full" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary-glow/10 animate-blob-morph blur-3xl" style={{ animationDelay: "-4s" }} />
+      <div
+        className="absolute bottom-20 left-10 w-96 h-96 bg-primary-glow/10 animate-blob-morph blur-3xl"
+        style={{ animationDelay: "-4s" }}
+      />
 
       <div className="relative z-10 container-narrow section-padding !py-32 sm:!py-40 lg:!py-48">
         <div className="max-w-3xl">
@@ -56,19 +75,20 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground px-5 py-2 rounded-full text-sm font-body font-medium mb-8"            
-              >
+              className="inline-flex items-center gap-2 bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground px-5 py-2 rounded-full text-sm font-body font-medium mb-8"
+            >
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               Importação & Exportação de Frutas Tropicais
             </motion.div>
 
+            {/* Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-primary-foreground leading-[1.1] mb-8 tracking-tight">
-              Conectando{" "}
-              <span className="italic">produtores</span> ao mundo com{" "}
+              Conectando <span className="italic">produtores</span> ao mundo com{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 text-secondary">qualidade</span>
                 <motion.span
@@ -80,12 +100,15 @@ const Hero = () => {
               </span>
             </h1>
 
+            {/* Description */}
             <p className="text-lg sm:text-xl text-primary-foreground/80 font-body font-light max-w-2xl mb-10 leading-relaxed">
               A RoFruit Connect leva as melhores frutas brasileiras para o mercado global,
               com compromisso com a qualidade do campo à mesa.
             </p>
 
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
+              {/* WhatsApp */}
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
@@ -97,19 +120,21 @@ const Hero = () => {
                 Fale com a Rochelle
                 <ArrowRight className="w-4 h-4" />
               </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                href="/catalogo"
-                className="inline-flex items-center justify-center gap-2 border-2 border-primary-foreground/20 text-primary-foreground px-8 py-4 rounded-xl text-base font-body font-medium backdrop-blur-sm hover:bg-primary-foreground/10 transition-all"
-              >
-                Ver Catálogo
-              </motion.a>
+
+              {/* CATÁLOGO (corrigido) */}
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/catalogo"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-primary-foreground/20 text-primary-foreground px-8 py-4 rounded-xl text-base font-body font-medium backdrop-blur-sm hover:bg-primary-foreground/10 transition-all"
+                >
+                  Ver Catálogo
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Stats bar */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,7 +163,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
