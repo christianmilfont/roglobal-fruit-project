@@ -67,8 +67,12 @@
   }
 
   .gradient-hero-overlay {
-    background: var(--gradient-hero);
-  }
+  background: linear-gradient(
+    160deg,
+    hsl(152 45% 18% / 0.75),
+    hsl(152 50% 28% / 0.5)
+  );
+}
 
   .gradient-section-bg {
     background: var(--gradient-section);
