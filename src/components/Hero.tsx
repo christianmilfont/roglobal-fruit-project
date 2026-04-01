@@ -37,9 +37,8 @@ const Hero = () => {
         <img
           src={heroImage}
           alt="Frutas tropicais brasileiras frescas"
-          className="w-full h-full object-cover scale-105"
-          width={1920}
-          height={1080}
+          className="w-full h-full object-cover scale-105 will-change-transform"
+          loading="eager"
         />
         <div className="absolute inset-0 gradient-hero-overlay" />
         {/* Decorative grain overlay */}
