@@ -2,6 +2,7 @@ import manga from "@/assets/manga.jpeg";
 import melancia from "@/assets/melancia.jpeg";
 import fruitPassionfruit from "@/assets/fruit-passionfruit.jpg";
 import melao from "@/assets/melao.jpeg"
+import cooc from "@/assets/coco.png"
 export interface Fruit {
   id: string;
   name: string;
@@ -22,7 +23,15 @@ export const fruits: Fruit[] = [
     image: manga,
     description: "Manga Tommy, Palmer e Espada — selecionadas com rigor para o mercado internacional.",
   },
-
+  {
+    id: "coco",
+    name: "Coco",
+    type: "Tropical",
+    origin: "Bahia",
+    availability: "Importação",
+    image: coco,
+    description: "Coco — Coletados da melhor maneira possível, mantendo o frescor.",
+  },
   {
     id: "melao",
     name: "Melão",
