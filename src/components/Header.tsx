@@ -30,15 +30,22 @@ const Header = () => {
       }`}
     >
       <div className="container-narrow section-padding !py-0 flex items-center justify-between h-16 sm:h-20">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300">
-            <span className="text-primary-foreground font-display font-bold text-sm">RF</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-display font-bold text-foreground leading-none">
-              Ro<span className="text-gradient-warm">Fruit</span>
+        
+        {/* LOGO NOVA */}
+        <Link to="/" className="flex items-center gap-3 group px-3 py-1.5 rounded-xl bg-white/70 backdrop-blur-sm">
+          <img
+            src="src/assets/logo.png"
+            alt="RS Fruit"
+            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+
+          <div className="flex flex-col leading-none">
+            <span className="text-lg font-display font-semibold tracking-tight">
+              RS<span className="text-gradient">Fruit</span>
             </span>
-            <span className="text-[10px] font-body text-muted-foreground tracking-widest uppercase">Connect</span>
+            <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+              Connect
+            </span>
           </div>
         </Link>
 
@@ -57,6 +64,7 @@ const Header = () => {
               {item.label}
             </Link>
           ))}
+
           <a
             href="https://wa.me/5500000000000?text=Olá! Gostaria de saber mais sobre a RoFruit Connect."
             target="_blank"
@@ -101,6 +109,7 @@ const Header = () => {
                   {item.label}
                 </Link>
               ))}
+
               <a
                 href="https://wa.me/5500000000000?text=Olá! Gostaria de saber mais sobre a RoFruit Connect."
                 target="_blank"

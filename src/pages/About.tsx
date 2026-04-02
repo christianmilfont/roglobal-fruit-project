@@ -3,6 +3,7 @@ import { Target, Eye, Heart, Leaf, Users, Globe } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import rochellePhoto from "@/assets/rochelle-photo.jpeg";
 
 const mvv = [
   {
@@ -64,14 +65,32 @@ const About = () => {
               className="space-y-8"
             >
               <div className="card-premium p-8 lg:p-12">
+                <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex-shrink-0 mx-auto md:mx-0"
+                  >
+                    <div className="w-48 h-48 lg:w-100 lg:h-56 rounded-2xl overflow-hidden shadow-elevated ring-4 ring-primary/10">
+                      <img
+                        src={rochellePhoto}
+                        alt="Rochelle - Fundadora da RoFruit Connect"
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-center mt-3 font-display font-semibold text-foreground text-sm">Rochelle</p>
+                    <p className="text-center font-body text-muted-foreground text-xs">Fundadora & CEO</p>
+                  </motion.div>
+                  <div className="flex-1">
                 <p className="text-lg font-body text-muted-foreground leading-relaxed mb-6">
-                  Nascida no interior da Bahia, Rochelle cresceu cercada pelo aroma das frutas tropicais e pelo
+                  Nascida no interior Cearense, Rochelle cresceu cercada pelo aroma das frutas tropicais e pelo
                   ritmo do campo. Desde cedo, aprendeu com a família o valor da terra e o potencial que cada
                   fruta carrega — não apenas como alimento, mas como conexão entre pessoas e culturas.
                 </p>
                 <p className="text-lg font-body text-muted-foreground leading-relaxed mb-6">
                   Com formação em comércio exterior e anos de experiência no agronegócio, Rochelle fundou a
-                  <strong className="text-foreground font-semibold"> RoFruit Connect</strong> com um propósito claro: criar pontes entre
+                  <strong className="text-foreground font-semibold"> RSFruit Connect</strong> com um propósito claro: criar pontes entre
                   pequenos e médios produtores brasileiros e compradores internacionais, garantindo que a
                   qualidade das frutas brasileiras chegue ao mundo com o respeito que merece.
                 </p>
@@ -80,6 +99,8 @@ const About = () => {
                   e muitas outras frutas. Mas o coração do negócio permanece o mesmo: a conexão humana, o
                   olhar atento à qualidade e o compromisso com quem planta e quem consome.
                 </p>
+                  </div>
+                </div>
               </div>
 
               {/* Highlights */}

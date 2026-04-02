@@ -11,7 +11,7 @@ const Footer = () => {
             Pronto para conectar-se ao mercado global?
           </h3>
           <p className="text-primary-foreground/70 font-body mb-8 max-w-xl mx-auto">
-            Fale com a Rochelle e descubra como a RoFruit Connect pode impulsionar seu negócio.
+            Fale com a Rochelle e descubra como a RSFruit Connect pode impulsionar seu negócio.
           </p>
           <a
             href="https://wa.me/5500000000000?text=Olá! Gostaria de saber mais sobre a RoFruit Connect."
@@ -32,10 +32,10 @@ const Footer = () => {
             <div>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                  <span className="text-secondary-foreground font-display font-bold text-xs">RF</span>
+                  <span className="text-secondary-foreground font-display font-bold text-xs">RS</span>
                 </div>
                 <span className="text-xl font-display font-bold text-background">
-                  RoFruit
+                  RSFruit
                 </span>
               </div>
               <p className="text-sm font-body text-background/50 leading-relaxed">
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-background/30">
-            <span>© {new Date().getFullYear()} RoFruit Connect. Todos os direitos reservados.</span>
+            <span>© {new Date().getFullYear()} RSFruit Connect. Todos os direitos reservados.</span>
             <span>Feito com 🍊 no Brasil</span>
           </div>
         </div>

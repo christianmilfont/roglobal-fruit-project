@@ -102,7 +102,7 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-lg sm:text-xl text-primary-foreground/80 font-body font-light max-w-2xl mb-10 leading-relaxed">
-              A RoFruit Connect leva as melhores frutas brasileiras para o mercado global,
+              A RSFruit Connect leva as melhores frutas brasileiras para o mercado global,
               com compromisso com a qualidade do campo à mesa.
             </p>
 
