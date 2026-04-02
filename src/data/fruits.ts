@@ -2,7 +2,7 @@ import manga from "@/assets/manga.jpeg";
 import melancia from "@/assets/melancia.jpeg";
 import fruitPassionfruit from "@/assets/fruit-passionfruit.jpg";
 import melao from "@/assets/melao.jpeg"
-import cooc from "@/assets/coco.png"
+import coco from "@/assets/coco.png"
 export interface Fruit {
   id: string;
   name: string;
