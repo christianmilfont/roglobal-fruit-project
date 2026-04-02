@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, X, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -40,6 +40,7 @@ const Catalog = () => {
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/3 blob animate-blob-morph blur-3xl" />
 
           <div className="container-narrow relative">
+            {/* HEADER */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -57,7 +58,7 @@ const Catalog = () => {
               <div className="section-divider mt-6" />
             </motion.div>
 
-            {/* Search + Filter bar */}
+            {/* SEARCH + FILTER */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -72,12 +73,13 @@ const Catalog = () => {
                     placeholder="Buscar fruta..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-shadow"
+                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
+
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className={`flex items-center gap-2 px-5 py-3.5 rounded-xl border font-body text-sm font-medium transition-all ${
+                  className={`flex items-center gap-2 px-5 py-3.5 rounded-xl border text-sm font-medium transition-all ${
                     showFilters || activeFilters > 0
                       ? "border-primary bg-primary-light text-primary"
                       : "border-border bg-card text-muted-foreground hover:bg-muted/50"
@@ -105,31 +107,40 @@ const Catalog = () => {
                       <select
                         value={typeFilter}
                         onChange={(e) => setTypeFilter(e.target.value)}
-                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-sm"
                       >
                         <option value="">Todos os tipos</option>
-                        {fruitTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+                        {fruitTypes.map((t) => (
+                          <option key={t} value={t}>{t}</option>
+                        ))}
                       </select>
+
                       <select
                         value={originFilter}
                         onChange={(e) => setOriginFilter(e.target.value)}
-                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-sm"
                       >
                         <option value="">Todas as origens</option>
-                        {fruitOrigins.map((o) => <option key={o} value={o}>{o}</option>)}
+                        {fruitOrigins.map((o) => (
+                          <option key={o} value={o}>{o}</option>
+                        ))}
                       </select>
+
                       <select
                         value={availFilter}
                         onChange={(e) => setAvailFilter(e.target.value)}
-                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        className="flex-1 px-4 py-3 rounded-lg border border-border bg-background text-sm"
                       >
                         <option value="">Disponibilidade</option>
-                        {fruitAvailabilities.map((a) => <option key={a} value={a}>{a}</option>)}
+                        {fruitAvailabilities.map((a) => (
+                          <option key={a} value={a}>{a}</option>
+                        ))}
                       </select>
+
                       {activeFilters > 0 && (
                         <button
                           onClick={clearFilters}
-                          className="flex items-center gap-1 px-4 py-3 rounded-lg text-sm font-body text-destructive hover:bg-destructive/10 transition-colors"
+                          className="flex items-center gap-1 px-4 py-3 rounded-lg text-sm text-destructive hover:bg-destructive/10"
                         >
                           <X className="w-3.5 h-3.5" />
                           Limpar
@@ -141,14 +152,14 @@ const Catalog = () => {
               </AnimatePresence>
             </motion.div>
 
-            {/* Results count */}
+            {/* RESULT COUNT */}
             <div className="mb-6">
-              <span className="text-sm font-body text-muted-foreground">
+              <span className="text-sm text-muted-foreground">
                 {filtered.length} {filtered.length === 1 ? "fruta encontrada" : "frutas encontradas"}
               </span>
             </div>
 
-            {/* Grid */}
+            {/* GRID */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <AnimatePresence mode="popLayout">
                 {filtered.map((fruit, i) => (
@@ -159,35 +170,44 @@ const Catalog = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ delay: i * 0.03 }}
-                    className="card-premium group"
+                    className="card-premium group hover:shadow-xl transition-shadow"
                   >
+                    {/* IMAGE */}
                     <div className="aspect-[4/3] overflow-hidden relative">
                       <img
                         src={fruit.image}
                         alt={fruit.name}
                         loading="lazy"
-                        width={800}
-                        height={600}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
+
+                    {/* CONTENT */}
                     <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3 flex-wrap">
-                        <span className="text-xs font-body font-medium bg-primary-light text-accent-foreground px-3 py-1 rounded-full">
+                      {/* TAGS */}
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        <span className="text-xs font-medium bg-primary-light text-accent-foreground px-3 py-1 rounded-full">
                           {fruit.type}
                         </span>
-                        <span className="text-xs font-body font-medium bg-secondary-light text-secondary px-3 py-1 rounded-full">
+                        <span className="text-xs font-medium bg-secondary-light text-secondary px-3 py-1 rounded-full">
                           {fruit.availability}
                         </span>
                       </div>
-                      <h3 className="text-xl font-display font-bold text-foreground mb-1.5">
+
+                      {/* TITLE */}
+                      <h3 className="text-xl font-display font-bold text-foreground mb-2">
                         {fruit.name}
                       </h3>
-                      <p className="text-xs text-muted-foreground font-body mb-3 flex items-center gap-1">
-                        📍 {fruit.origin}
-                      </p>
-                      <p className="text-sm text-muted-foreground font-body leading-relaxed line-clamp-3">
+
+                      {/* ORIGIN (PROFISSIONAL) */}
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 text-xs font-medium text-foreground mb-3">
+                        <MapPin className="w-3.5 h-3.5 text-primary" />
+                        {fruit.origin}
+                      </div>
+
+                      {/* DESCRIPTION */}
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                         {fruit.description}
                       </p>
                     </div>
@@ -196,18 +216,19 @@ const Catalog = () => {
               </AnimatePresence>
             </div>
 
+            {/* EMPTY */}
             {filtered.length === 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center py-20"
               >
-                <p className="text-muted-foreground font-body text-lg">
+                <p className="text-muted-foreground text-lg">
                   Nenhuma fruta encontrada com os filtros selecionados.
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="mt-4 text-primary font-body font-medium hover:text-primary-glow transition-colors"
+                  className="mt-4 text-primary font-medium hover:text-primary-glow"
                 >
                   Limpar filtros
                 </button>
