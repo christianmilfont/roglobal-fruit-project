@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
-
 const navItems = [
   { label: "Início", path: "/" },
   { label: "Catálogo", path: "/catalogo" },
@@ -31,39 +30,20 @@ const Header = () => {
       }`}
     >
       <div className="container-narrow section-padding !py-0 flex items-center justify-between h-16 sm:h-20">
-
-        {/* LOGO MAIOR E PREMIUM */}
-        <Link
-          to="/"
-          className="relative flex items-center gap-3 group px-3 py-1.5"
-        >
-          {/* Glow */}
-          <div className="absolute inset-0 rounded-xl bg-white/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
+        
+        {/* LOGO NOVA */}
+        <Link to="/" className="flex items-center gap-3 group px-3 py-1.5 rounded-xl bg-white/70 backdrop-blur-sm">
           <img
             src={logo}
             alt="RS Fruit"
-            className="h-16 sm:h-16 w-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-105"
+            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
 
-          <div className="flex flex-col leading-none relative z-10">
-            <span
-              className={`text-xl font-display font-semibold tracking-tight transition-all ${
-                scrolled
-                  ? "text-foreground"
-                  : "text-white drop-shadow-md"
-              }`}
-            >
+          <div className="flex flex-col leading-none">
+            <span className="text-lg font-display font-semibold tracking-tight">
               RS<span className="text-gradient">Fruit</span>
             </span>
-
-            <span
-              className={`text-[11px] tracking-[0.2em] uppercase transition-all ${
-                scrolled
-                  ? "text-muted-foreground"
-                  : "text-white/70"
-              }`}
-            >
+            <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
               Connect
             </span>
           </div>
@@ -78,9 +58,7 @@ const Header = () => {
               className={`relative text-sm font-body font-medium px-4 py-2 rounded-lg transition-all duration-300 ${
                 location.pathname === item.path
                   ? "text-primary bg-primary-light"
-                  : scrolled
-                  ? "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  : "text-white/80 hover:text-white hover:bg-white/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               }`}
             >
               {item.label}
@@ -100,11 +78,7 @@ const Header = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden p-2.5 rounded-xl transition-colors ${
-            scrolled
-              ? "text-foreground hover:bg-muted/50"
-              : "text-white hover:bg-white/10"
-          }`}
+          className="md:hidden p-2.5 rounded-xl text-foreground hover:bg-muted/50 transition-colors"
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={22} /> : <Menu size={22} />}
