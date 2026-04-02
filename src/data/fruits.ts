@@ -21,7 +21,7 @@ export const fruits: Fruit[] = [
     origin: "Bahia",
     availability: "Exportação",
     image: manga,
-    description: "Manga Tommy, Palmer e Espada — selecionadas com rigor para o mercado internacional.",
+    description: "Manga Tommy, Manga Palmer, Manga Keit, Manga Kenth e Manga Rosa — selecionadas com rigor para o mercado internacional.",
   },
   {
     id: "coco",
