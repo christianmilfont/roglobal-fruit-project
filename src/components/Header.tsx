@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import logo from "@/assets/logo.png";
 const navItems = [
   { label: "Início", path: "/" },
   { label: "Catálogo", path: "/catalogo" },
@@ -34,7 +34,7 @@ const Header = () => {
         {/* LOGO NOVA */}
         <Link to="/" className="flex items-center gap-3 group px-3 py-1.5 rounded-xl bg-white/70 backdrop-blur-sm">
           <img
-            src="/src/assets/logo.png"
+            src={logo}
             alt="RS Fruit"
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
