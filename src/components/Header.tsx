@@ -34,7 +34,7 @@ const Header = () => {
         {/* LOGO NOVA */}
         <Link to="/" className="flex items-center gap-3 group px-3 py-1.5 rounded-xl bg-white/70 backdrop-blur-sm">
           <img
-            src="src/assets/logo.png"
+            src="/src/assets/logo.png"
             alt="RS Fruit"
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
