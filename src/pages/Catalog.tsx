@@ -1,18 +1,31 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, X, MapPin, Leaf, ArrowRightLeft, MessageCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { fruits, fruitTypes, fruitOrigins, fruitAvailabilities } from "@/data/fruits";
-import { MapPin } from "lucide-react";
-
+import { fruits, fruitTypes, fruitOrigins, fruitAvailabilities, type Fruit } from "@/data/fruits";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 const Catalog = () => {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [originFilter, setOriginFilter] = useState("");
   const [availFilter, setAvailFilter] = useState("");
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedFruit, setSelectedFruit] = useState<Fruit | null>(null);
 
   const activeFilters = [typeFilter, originFilter, availFilter].filter(Boolean).length;
 
@@ -160,11 +173,12 @@ const Catalog = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ delay: i * 0.03 }}
-                    className="card-premium group"
+                    className="card-premium group cursor-pointer"
+                    onClick={() => setSelectedFruit(fruit)}
                   >
                     <div className="aspect-[4/3] overflow-hidden relative">
                       <img
-                        src={fruit.image}
+                        src={fruit.image[0]}
                         alt={fruit.name}
                         loading="lazy"
                         width={800}
@@ -172,6 +186,11 @@ const Catalog = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-3 left-3 right-3 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span className="text-xs font-body font-medium text-white bg-foreground/60 backdrop-blur-sm px-4 py-1.5 rounded-full">
+                          Clique para ver detalhes
+                        </span>
+                      </div>
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-3 flex-wrap">
@@ -186,9 +205,9 @@ const Catalog = () => {
                         {fruit.name}
                       </h3>
                       <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-  <MapPin className="w-4 h-4 text-primary" />
-  {fruit.origin}
-</p>
+                        <MapPin className="w-4 h-4 text-primary" />
+                        {fruit.origin}
+                      </p> 
                       <p className="text-sm text-muted-foreground font-body leading-relaxed line-clamp-3">
                         {fruit.description}
                       </p>
@@ -220,6 +239,125 @@ const Catalog = () => {
       </main>
       <Footer />
       <WhatsAppButton />
+
+     {/* Detail Sheet */}
+<Sheet
+  open={!!selectedFruit}
+  onOpenChange={(open) => !open && setSelectedFruit(null)}
+>
+  <SheetContent
+    side="right"
+    className="w-full sm:max-w-lg overflow-y-auto p-0 border-l border-border"
+  >
+    {selectedFruit && (
+      <div className="flex flex-col">
+        {/* Hero carousel */}
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {selectedFruit.image.map((img, index) => (
+              <CarouselItem key={index}>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={img}
+                    alt={`${selectedFruit.name}-${index}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious className="left-4" />
+          <CarouselNext className="right-4" />
+        </Carousel>
+
+        <div className="absolute top-[240px] left-6 right-6 z-10">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span className="text-xs font-body font-semibold bg-primary text-primary-foreground px-3 py-1 rounded-full">
+              {selectedFruit.type}
+            </span>
+            <span className="text-xs font-body font-semibold bg-secondary text-secondary-foreground px-3 py-1 rounded-full">
+              {selectedFruit.availability}
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground">
+            {selectedFruit.name}
+          </h2>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 space-y-6 mt-6">
+          <SheetHeader className="p-0 space-y-0">
+            <SheetTitle className="sr-only">
+              {selectedFruit.name}
+            </SheetTitle>
+            <SheetDescription className="sr-only">
+              Detalhes sobre {selectedFruit.name}
+            </SheetDescription>
+          </SheetHeader>
+
+          <p className="text-base font-body text-muted-foreground leading-relaxed">
+            {selectedFruit.description}
+          </p>
+
+          {/* Info cards */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-primary-light/50 border border-primary/10">
+              <Leaf className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <span className="text-xs font-body text-muted-foreground uppercase tracking-wider">
+                  Tipo
+                </span>
+                <p className="text-sm font-body font-semibold text-foreground">
+                  {selectedFruit.type}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary-light/50 border border-secondary/10">
+              <MapPin className="w-5 h-5 text-secondary mt-0.5 shrink-0" />
+              <div>
+                <span className="text-xs font-body text-muted-foreground uppercase tracking-wider">
+                  Origem
+                </span>
+                <p className="text-sm font-body font-semibold text-foreground">
+                  {selectedFruit.origin}
+                </p>
+              </div>
+            </div>
+
+            <div className="col-span-2 flex items-start gap-3 p-4 rounded-xl bg-muted/50 border border-border">
+              <ArrowRightLeft className="w-5 h-5 text-accent-foreground mt-0.5 shrink-0" />
+              <div>
+                <span className="text-xs font-body text-muted-foreground uppercase tracking-wider">
+                  Disponibilidade
+                </span>
+                <p className="text-sm font-body font-semibold text-foreground">
+                  {selectedFruit.availability}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <a
+            href={`https://wa.me/5500000000000?text=Olá! Tenho interesse na fruta: ${selectedFruit.name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-primary text-primary-foreground font-body font-semibold text-sm hover:brightness-110 transition-all"
+          >
+            <MessageCircle className="w-4 h-4" />
+            Solicitar Cotação
+          </a>
+        </div>
+      </div>
+    )}
+  </SheetContent>
+</Sheet>
     </div>
   );
 };

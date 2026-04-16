@@ -1,6 +1,7 @@
 import manga from "@/assets/manga.jpeg";
 import melancia from "@/assets/melancia.jpeg";
-import fruitPassionfruit from "@/assets/fruit-passionfruit.jpg";
+import maracuja from "@/assets/maracuja.jpeg";
+import manga2 from "@/assets/manga2.jpeg"
 import melao from "@/assets/melao.jpeg"
 import coco from "@/assets/coco.png"
 export interface Fruit {
@@ -9,7 +10,7 @@ export interface Fruit {
   type: string;
   origin: string;
   availability: string;
-  image: string;
+  image: string[];
   description: string;
 }
 
@@ -20,7 +21,7 @@ export const fruits: Fruit[] = [
     type: "Tropical",
     origin: "Bahia",
     availability: "Exportação",
-    image: manga,
+    image: [manga, manga2],
     description: "Manga Tommy, Manga Palmer, Manga Keit, Manga Kenth e Manga Rosa — selecionadas com rigor para o mercado internacional.",
   },
   {
@@ -29,7 +30,7 @@ export const fruits: Fruit[] = [
     type: "Tropical",
     origin: "Bahia",
     availability: "Importação",
-    image: coco,
+    image: [coco],
     description: "Coco — Coletados da melhor maneira possível, mantendo o frescor.",
   },
   {
@@ -38,7 +39,7 @@ export const fruits: Fruit[] = [
     type: "Tropical",
     origin: "Bahia",
     availability: "Importação e Exportação",
-    image: melao,
+    image: [melao],
     description: "Mleão — cultivados com técnicas sustentáveis.",
   },
   {
@@ -47,8 +48,17 @@ export const fruits: Fruit[] = [
     type: "Tropical",
     origin: "Rio Grande do Norte",
     availability: "Importação",
-    image: melancia,
+    image: [melancia],
     description: "Melancias de polpa vermelha intensa, selecionadas por tamanho e doçura.",
+  },
+    {
+    id: "maracuja",
+    name: "Maracujá",
+    type: "Tropical",
+    origin: "Bahia",
+    availability: "Exportação",
+    image: [maracuja],
+    description: "Maracujá azedo e doce — sabor intenso reconhecido mundialmente.",
   },
 
 ];

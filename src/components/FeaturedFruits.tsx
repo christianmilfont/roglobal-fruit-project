@@ -67,7 +67,7 @@ const FeaturedFruits = () => {
                 >
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img
-                      src={fruit.image}
+                      src={fruit.image[0]}
                       alt={fruit.name}
                       loading="lazy"
                       width={800}
