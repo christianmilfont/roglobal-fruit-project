@@ -1,4 +1,4 @@
-import manga from "@/assets/manga.jpeg";
+import manga1 from "@/assets/manga.jpeg";
 import melancia from "@/assets/melancia.jpeg";
 import maracuja from "@/assets/maracuja.jpeg";
 import manga2 from "@/assets/manga2.jpeg"
@@ -21,7 +21,7 @@ export const fruits: Fruit[] = [
     type: "Tropical",
     origin: "Bahia",
     availability: "Exportação",
-    image: [manga, manga2],
+    image: [manga1, manga2],
     description: "Manga Tommy, Manga Palmer, Manga Keit, Manga Kenth e Manga Rosa — selecionadas com rigor para o mercado internacional.",
   },
   {
